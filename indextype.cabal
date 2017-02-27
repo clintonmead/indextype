@@ -12,7 +12,7 @@ category:
 build-type:           Simple
 -- extra-source-files:
 cabal-version:        >=1.10
-
+Tested-With: GHC == 8.0.2
 library
   exposed-modules:      Control.IndexT
   -- other-modules:
