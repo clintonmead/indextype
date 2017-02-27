@@ -398,7 +398,7 @@ class (TupleConstraint n a) => IsTuple n a
 instance (TupleConstraint n a) => IsTuple n a
 
 {-|
-The version of 'IsTuple' for homogenous tuples (i.e. all the same type.
+The version of 'IsTuple' for homogenous tuples (i.e. all the same type).
 -}
 class (HomoTupleConstraint n a) => IsHomoTuple n a
 instance (HomoTupleConstraint n a) => IsHomoTuple n a

@@ -10,8 +10,7 @@
 module Main where
 
 import Control.IndexT
-import Test.HUnit
-import System.Exit (exitSuccess, exitFailure)
+import Test.Hspec
 
 default ()
 
@@ -51,19 +50,9 @@ x3 = f3 (FT (\x y -> if y then x*2 else x*3)) 5 False
 x4 :: Integer
 x4 = f4 (HFT (+)) 40 3
 
-test1 = TestCase (assertEqual "Tuple Test" x1 42)
-test2 = TestCase (assertEqual "HomoTuple Test" x2 84)
-test3 = TestCase (assertEqual "Func Test" x3 15)
-test4 = TestCase (assertEqual "HomoFunc Test" x4 43)
-
-tests = TestList [test1, test2, test3, test4]
-
-runTestTTAndExit :: Test -> IO ()
-runTestTTAndExit tests = do
-  c <- runTestTT tests
-  if (errors c == 0) && (failures c == 0)
-    then exitSuccess
-    else exitFailure
-
 main :: IO ()
-main = runTestTTAndExit tests
+main = hspec $ do
+  it "Tuple Test" $ x1 `shouldBe` 42
+  it "HomoTuple Test" $ x2 `shouldBe` 84
+  it "Func Test" $ x3 `shouldBe` 15
+  it "HomoFunc Test" $ x4 `shouldBe` 43
