@@ -10,7 +10,6 @@
 
 {-|
 Module      : Control.IndexT
-Description : Type functions for getting the type at a particular index of another type, and some handy constraints.
 Copyright   : Clinton Mead, 2017
 License     : MIT
 Maintainer  : clintonmead@gmail.com
@@ -19,7 +18,7 @@ Portability : GHC
 
 This module is useful for dealing with for what I have called "indexed types". This is perhaps not a great choice of
 name (alternative suggestions welcome) but basically I'm talking about types where you can "index" them like an array.
-A tuple, is a good example. This module gives you a type function that allows you to get the type of the say, third
+A tuple is a good example. This module gives you a type function that allows you to get the type of the say, third
 element of a tuple.
 
 Building on this, occasionally you'll want to write a constraint like this:

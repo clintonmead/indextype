@@ -1,10 +1,13 @@
 name:                 indextype
 version:              0.1.0.0
-synopsis:             
--- description:
--- license:
--- license-file:
-homepage:             
+synopsis: A series of type families and constraints for "array like" types, like tuples and functions.
+description:
+  This package deals with types that can roughly be "indexed" by an integer. For example, tuples, that could have
+  1st, 2nd, 3rd etc elements, and functions which could have 1st, 2nd, 3rd, arguments. A number of type functions
+  allow one to extract these subtypes, i.e. the type of the 2nd element of a given tuple.
+
+  Furthermore, constraints are defined which allow one to easily constrain types to these index types,
+  e.g. a constraint that says "@t@ is a 3 tuple". @Control.IndexT@ has more detail.
 author:               Clinton Mead
 maintainer:           clintonmead@gmail.com
 category:             
@@ -12,7 +15,8 @@ category:
 build-type:           Simple
 -- extra-source-files:
 cabal-version:        >=1.10
-Tested-With: GHC == 8.0.2
+tested-with: GHC == 8.0.2
+
 library
   exposed-modules:      Control.IndexT
   -- other-modules:
