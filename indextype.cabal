@@ -17,7 +17,7 @@ copyright: Clinton Mead (2017)
 build-type:           Simple
 cabal-version:        >=1.10
 tested-with: GHC == 8.0.2
-bug-reports:
+bug-reports: https://github.com/clintonmead/indextype/issues
 
 source-repository head
   type: git
