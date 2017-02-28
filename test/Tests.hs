@@ -9,8 +9,11 @@
 
 module Main where
 
-import Control.IndexT
 import Test.Hspec
+
+import Control.IndexT
+import Control.IndexT.Tuple
+import Control.IndexT.Function
 
 default ()
 
@@ -26,6 +29,9 @@ data FT where
 data HFT where
   HFT :: (forall t. (Num (IndexT 0 t), IsHomoFunc 2 t) => t) -> HFT
 
+data HAFT where
+  HAFT :: (forall t. (Eq (IndexT 0 t), ResultT 2 t ~ Bool, IsHomoArgFunc 2 t) => t) -> HAFT
+
 f1 :: TT -> Integer
 f1 (TT (x :: (Int, Integer))) = toInteger (fst x) + toInteger (snd x)
 
@@ -37,6 +43,9 @@ f3 (FT f) x y = f x y
 
 f4 :: (Num a) => HFT -> a -> a -> a
 f4 (HFT f) x y = f x y
+
+f5 :: (Eq a) => HAFT -> a -> a -> Bool
+f5 (HAFT f) x y = f x y
 
 x1 :: Integer
 x1 = f1 (TT (40,2))
@@ -50,9 +59,13 @@ x3 = f3 (FT (\x y -> if y then x*2 else x*3)) 5 False
 x4 :: Integer
 x4 = f4 (HFT (+)) 40 3
 
+x5 :: Bool
+x5 = f5 (HAFT (==)) 'x' 'x'
+
 main :: IO ()
 main = hspec $ do
   it "Tuple Test" $ x1 `shouldBe` 42
   it "HomoTuple Test" $ x2 `shouldBe` 84
   it "Func Test" $ x3 `shouldBe` 15
   it "HomoFunc Test" $ x4 `shouldBe` 43
+  it "HomoArgFunc Test" $ x5 `shouldBe` True
