@@ -42,7 +42,6 @@ module Control.IndexT (
   ) where
 
 import GHC.TypeLits (Nat)
-import GHC.Exts (Constraint)
 import Data.Functor.Identity (Identity)
 
 {-|

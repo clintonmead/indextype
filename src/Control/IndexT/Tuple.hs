@@ -80,7 +80,7 @@ type TupleConstraint (n :: Nat) a = a ~ TupleN n a
 
 So @HomoTupleConstraint 3 t@ basically says @t ~ (u,u,u)@ for some @u@,
 
-("Homo" is short for "Homogeneous". Like milk.)
+(\"Homo\" is short for \"Homogeneous\". As in, all the same. Or like milk.)
 -}
 type family HomoTupleConstraint (n :: Nat) a :: Constraint
 type instance HomoTupleConstraint 0 a = (TupleConstraint 0 a)
