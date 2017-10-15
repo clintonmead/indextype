@@ -3,6 +3,7 @@
 {-# LANGUAGE KindSignatures #-}
 {-# LANGUAGE ConstraintKinds #-}
 {-# LANGUAGE UndecidableInstances #-}
+{-# LANGUAGE TypeInType #-}
 
 {-|
 This module provides a way to constrain types to be data constructors, much like
@@ -16,7 +17,7 @@ constructors with up to two parameters is supported. Just nag me if your applica
 needs more.
 -}
 module Control.IndexT.Constructor (
-  IndexC,
+  IndexC, IndexCK,
   -- $getConstructorDocs
   GetConstructor1,
   GetConstructor2,
@@ -26,17 +27,28 @@ where
 
 import GHC.TypeLits (Nat)
 import GHC.Exts (Constraint)
+import Data.Kind (Type)
 
 {-|
 > IndexC i n (f a_0 a_1 .. a_(n-1))
 
 the ith (zero based) parameter of the constructor with n parameters, i.e. @a_i@
--}
-type family IndexC (n :: Nat) (i :: Nat) a
 
-type instance IndexC 1 0 (_ a) = a
-type instance IndexC 2 0 (_ a _) = a
-type instance IndexC 2 1 (_ _ a) = a
+This however only allows constructors with parameters of type :: @Type@,
+not of other kinds (see 'IndexCK')
+-}
+type IndexC (n :: Nat) (i :: Nat) a = IndexCK Type n i a
+
+{-|
+> Just like 'IndexC' but has an additional kind parameter
+-}
+type family IndexCK k (n :: Nat) (i :: Nat) a = (r :: k)
+
+type instance IndexCK k 1 0 (_ (a :: k)) = a
+type instance IndexCK k 2 0 (_ (a :: k) _) = a
+type instance IndexCK k 2 1 (_ _ (a :: k)) = a
+
+
 
 {- $getConstructorDocs
 These functions actually get the constructor, Unfortunately these are separate named functions instead

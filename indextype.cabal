@@ -1,5 +1,5 @@
 name:                 indextype
-version:              0.2.2.0
+version:              0.2.3.0
 synopsis: A series of type families and constraints for "indexable" types.
 description:
   This package deals with types that can roughly be "indexed" at compile time by an integer.
