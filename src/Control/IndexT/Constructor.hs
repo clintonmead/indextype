@@ -4,7 +4,7 @@
 {-# LANGUAGE ConstraintKinds #-}
 {-# LANGUAGE UndecidableInstances #-}
 {-# LANGUAGE TypeInType #-}
-
+{-# LANGUAGE TypeFamilyDependencies #-}
 {-|
 This module provides a way to constrain types to be data constructors, much like
 "Control.IndexT.Tuple" and "Control.IndexT.Function".
